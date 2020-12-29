@@ -23,4 +23,10 @@ export default createGlobalStyle`
     .d-none{
         display: none;
     }
+    main{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
 `

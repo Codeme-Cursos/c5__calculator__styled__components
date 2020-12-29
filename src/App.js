@@ -1,6 +1,6 @@
-import Footer from './components/shared/footer/Footer';
-import Navbar from './components/shared/navbar/Navbar';
-import Calculator from './pages/Calculator';
+import Footer from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
+import Calculator from './components/calculator/Calculator';
 import GlobalStyle from './styles/global';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
@@ -11,7 +11,9 @@ const App = () => {
             <GlobalStyle />
             <ThemeProvider theme={theme}>
                 <Navbar />
-                <Calculator />
+                <main>
+                    <Calculator />
+                </main>
                 <Footer />
             </ThemeProvider>
         </>

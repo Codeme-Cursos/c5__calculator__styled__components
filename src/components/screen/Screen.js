@@ -1,9 +1,9 @@
 import { StyledScreen } from './style';
 
-const Screen = () => {
+const Screen = ({ display }) => {
     return (
         <StyledScreen>
-            
+            {display}
         </StyledScreen>
     )
 }
