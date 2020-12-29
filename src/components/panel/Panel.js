@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../button/Button';
 import { StyledPanel, StyledPanelRow } from './style';
 
@@ -8,8 +8,13 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
     const [decimal, setDecimal] = useState(1)
 
     const handleDecimal = (e) => {
+        //parseInt retorna de la cadena 'dx' solo x como número
         setDecimal(parseInt(e.target.value))
     }
+
+    useEffect(() => {
+        console.log(decimal)
+    }, [decimal])
 
     const resetScreen = () => {
         setDisplay([''])
@@ -34,7 +39,7 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
             return result.toString().split('')
         } else if (typeof result === 'string') {
             if (result.length < 5) return `${result}%`
-            else return `${result.substr(0, 3+decimal)}%`
+            else return `${result.substr(0, 3 + decimal)}%`
         } else {
             return result.toFixed(decimal).toString().split('')
         }
@@ -63,12 +68,18 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
         }
     }
 
+    const deleteLastScreenCharacter = () => {
+        if (display.length > 0) {
+            setDisplay(display.slice(0, -1))
+        }
+    }
+
     const calculatorManager = [
         [
             { text: "1d", color: "danger", onClick: handleDecimal },
             { text: "2d", color: "danger", onClick: handleDecimal },
             { text: "3d", color: "danger", onClick: handleDecimal },
-            { text: "AC", color: "danger", onClick: resetScreen }
+            { text: "4d", color: "danger", onClick: handleDecimal },
         ],
         [
             { text: "+", color: "success" },
@@ -93,13 +104,13 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
             { text: "1", color: "primary" },
             { text: "2", color: "primary" },
             { text: "3", color: "primary" },
-            { text: "(", color: "success" }
+            { text: "AC", color: "danger", onClick: resetScreen }
         ],
         [
             { text: "0", color: "primary" },
             { text: ".", color: "primary" },
-            { text: "=", color: "danger", onClick: setResult },
-            { text: ")", color: "success" }
+            { text: "<", color: "danger", onClick: deleteLastScreenCharacter },
+            { text: "=", color: "danger", onClick: setResult }
         ]
     ]
 
