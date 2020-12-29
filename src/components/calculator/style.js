@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledCalculator = styled.div`
     background-color: ${({ theme }) => theme.color.dark};
-    width: 400px;
+    width: 300px;
     min-width: 280px;
     padding: 20px;
     display: flex;

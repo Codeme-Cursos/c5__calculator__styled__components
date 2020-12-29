@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Panel from '../panel/Panel';
 import Screen from '../screen/Screen';
 import { StyledCalculator } from './style';
@@ -14,6 +14,12 @@ const Calculator = () => {
             setDisplay(value)
         }
     }
+
+    useEffect(() => {
+        if (display.length > 13) {
+            setDisplay(['Error'])
+        }
+    }, [display])
 
     return (
         <StyledCalculator>

@@ -12,7 +12,7 @@ export const StyledButton = styled.div`
         font-weight: 500;
         font-size: 18px;
         margin-bottom: 10px;
-        box-shadow: 2px 2px 3px ${({ theme }) => theme.color.dark};
+        box-shadow: ${({ selected }) => selected ? 'inset' : ''} 2px 2px 3px ${({ theme }) => theme.color.dark};
         &:active {
             box-shadow: inset 2px 2px 3px ${({ theme }) => theme.color.dark};
         }
