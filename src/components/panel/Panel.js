@@ -30,8 +30,11 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
     }
 
     const formatMAthOperation = (result) => {
-        if (Number.isInteger(result) || typeof result === 'string') {
+        if (Number.isInteger(result)) {
             return result.toString().split('')
+        } else if (typeof result === 'string') {
+            if (result.length < 5) return `${result}%`
+            else return `${result.substr(0, 3+decimal)}%`
         } else {
             return result.toFixed(decimal).toString().split('')
         }
@@ -43,7 +46,7 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
             "+": parseInt(a) + parseInt(b),
             "x": a * b,
             "/": a / b,
-            "%": `${((100 / b) * a).toFixed(1)}%`,
+            "%": `${(100 / b) * a}`,
             "√": Math.sqrt(a)
         }[operation]
         return formatMAthOperation(result)
@@ -55,8 +58,8 @@ const Panel = ({ setDisplayLimit, setDisplay, display }) => {
         } else {
             let operation = detectMathOperation()
             let items = splitMathOperation(operation)
-            let result = calculate(items[0], items[1], operation)
-            setDisplay(result)
+
+            setDisplay(calculate(items[0], items[1], operation))
         }
     }
 
